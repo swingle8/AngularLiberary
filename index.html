@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" ng-app="project">
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link charset="utf-8" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" media="screen" rel="stylesheet">
+        <link charset="utf-8" href="http://fonts.googleapis.com/css?family=Roboto%20Condensed:400" media="screen" rel="stylesheet">
+       	
+ 
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
+  <script src="project.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  
+  <script type="text/javascript" src="fusioncharts/fusioncharts.js"></script>
+  <script type="text/javascript" src="fusioncharts/themes/fusioncharts.theme.fint.js"></script>
+</head>
+<body style="width:100%;margin:auto">
+<div id="content" style="padding:5px">
+<div>
+    <h2>AngularJS - JavaScript Projects</h2>
+    <div ng-view></div>
+	
+</div style="height : 500px ;">
+<center><a href="#/chart"  data-toggle="tooltip" title="Generate Chart of the data present in the table."><font size="6">Generate Charts</font></a></center>
+</div>
+</div>
+<p>
+<div>
+<b>The Ask</b>
+<ol>
+<li> Add a new field to the model called author
+<li> Add a new field to the model called file size
+<li> Add a new field to the model called creation date
+<!--
+1. For Ask 1,2 and 3 : Edit constructor Project add fields author,filesize and date in Projects.js.
+
+2. For Ask 1,2 and 3 : In the List Controller , add itm.author,itm.filesize,itm.date fields in the oject of Project before display.
+
+3. For Ask 1,2 and 3 : In EditCtrl , As we needed to save newly created attributes , created prj.author, prj.filesize, prj.date here in save function. 
+-->
+
+
+<li> Make the column headings clickable and clicking them should cycle
+through sorting by ascending, descending and no order
+<!--
+1. For Ask 4 : Edit <th> tag of <table> make them clickable in list.html.
+   
+2. For Ask 4 : develop 3 variables in List controller of Project.js , field, reverse and count
+   
+3. For Ask 4 : develop a function called order in List controller of Project.js , which takes the column name 
+               which is being pressed and calculate from count variable what kind of sort it has to perform on
+			   data and set field , reverse variables accordingly.
+                   
+4. For Ask 4 : field, reverse scope variables are then used in List.html for generate view accordingly. 
+-->
+
+<li> Add a search row below the heading row, each column contains a search
+field. Entering a value in the search field should filter data only based on
+values in that column (unlike the search above the table which filters
+based on data in any field)
+<!--
+1. For Ask 5 : create 5 input fields in list.html having ng-model like search.name,search.description,
+               search.author,search.filesize, search.date.
+   
+2. For Ask 5 : Apply filter in ng-repeat on search
+-->
+
+<li> Add another action next to the pencil icon on each row to delete the
+record
+<!--
+1. For Ask 6 : create one more column in the Table 'List.html' , on click it calls destroy funcion 
+               in the List Controller.  
+   
+2. For Ask 6 : Develop a destroy function which calls remove() function of projects class passing it 
+               the project id to be removed.
+-->
+</ol>
+You must attempt one of the following two. For experienced developers interested in senior positions, both are required.
+<ol>
+<li> Add a cart area and provide the ability to drag and drop the libraries
+into this cart. The cart should display each library as a cart item with
+name and file size. Below the cart, the total file size should be
+displayed.
+<!--
+1. For Ask 7 : Created custom Draggable and Droppable directives and implement Draggable in the 
+               Data Div and droppable in the Cart div.   
+   
+2. For Ask 7 : Take return of data from droppable directive and call CreateCart function in the 
+               project.js file and here make CartItem type object and add it in a array, and 
+			   also removes the Project object from the projects array.
+			   
+3. For Ask 7 : In the CreateCart function , we are also calculating the file size in a Global
+               variable.		   
+-->
+
+<li> Integrate with any charting/visualization library and present the data
+either based on creation date or file size. Any other visualizations are
+welcome
+<!--
+1. For Ask 8 : include FusionChart liberarys in the index.html file.
+
+2. For Ask 8 : Create GenerateChart controller inthe project.js which is mapped with chart.html, 
+               on which maps are loading.   	
+-->
+
+</ol>
+</div>
+</div>
+</body>
+</html>

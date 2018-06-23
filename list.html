@@ -1,0 +1,114 @@
+<div style="
+    text-align: center;
+    margin: 0px auto;
+    display: inline-block;
+	position: relative;
+	width : 100%;
+ ">
+<div style="float:left; left:2px; width:73% ; height:500px ; overflow: auto">
+<input type="text" ng-model="search.$" class="search-query" placeholder="Search">
+<table class="spacing-table">
+<thead>
+<tr>
+
+<th><button class="Sort-btn" ng-click="order('name')" data-toggle="tooltip" title="Press button to sort data by project Name">Project</button>
+<span ng-show="field == 'name' || randomfield == 'name'">
+<span ng-show="increment"><font color="red">^</font></span>
+<span ng-show="reverse"><font color="red">v</font></span>
+<span ng-show="noorder"><font color="red">~</font></span>
+</span>
+</th>
+
+<th><button class="Sort-btn" ng-click="order('description')" data-toggle="tooltip" title="Press button to sort data by project Description">Description</button>
+<span ng-show="field == 'description' || randomfield == 'description'">
+<span ng-show="increment"><font color="red">^</font></span>
+<span ng-show="reverse"><font color="red">v</font></span>
+<span ng-show="noorder"><font color="red">~</font></span>
+</span>
+</th>
+
+<th><button class="Sort-btn" ng-click="order('author')" data-toggle="tooltip" title="Press button to sort data by Author Name">Author</button>
+<span ng-show="field == 'author' || randomfield == 'author'">
+<span ng-show="increment"><font color="red">^</font></span>
+<span ng-show="reverse"><font color="red">v</font></span>
+<span ng-show="noorder"><font color="red">~</font></span>
+</span>
+</th>
+
+<th width="100px"><button class="Sort-btn" ng-click="order('filesize')" data-toggle="tooltip" title="Press button to sort data by File size">Size(Kbs)</button>
+<span ng-show="field == 'filesize' || randomfield == 'filesize'">
+<span ng-show="reverse"><font color="red">^</font></span>
+<span ng-show="increment"><font color="red">v</font></span>
+<span ng-show="noorder"><font color="red">~</font></span>
+</span>
+</th>
+
+<th><button class="Sort-btn" ng-click="order('date')" data-toggle="tooltip" title="Press button to sort data by Date of creation">Date</button>
+<span ng-show="field == 'date' || randomfield == 'date'">
+<span ng-show="increment"><font color="red">^</font></span>
+<span ng-show="reverse"><font color="red">v</font></span>
+<span ng-show="noorder"><font color="red">~</font></span>
+</span>
+</th>
+
+<th><a href="#/new"  data-toggle="tooltip" title="Add new Projects in the List"><i class="icon-plus-sign"></i></a></th>
+<th><a href="#"  data-toggle="tooltip" title="Delete project from the list"><i class="icon-trash"></i></a></th>
+
+</tr>
+<tr>
+<th><input type="text" ng-model="search.name" style="width:70px ; height:15px" placeholder="Search Project"></th>
+<th><input type="text" ng-model="search.description" style="width:70px ; height:15px" placeholder="Search Description"></th>
+<th><input type="text" ng-model="search.author" onkeypress="return onlyAlphabets(event,this);" style="width:70px ; height:15px" placeholder="Search Author"></th>
+<th><input type="text" ng-model="search.filesize" onkeypress="return isNumber(event);" style="width:70px ; height:15px" placeholder="Search Size (Kbs)"></th>
+<th><input type="date" ng-model="search.date" style="width:70px ; height:15px" placeholder="Search Date"></th>
+</tr>
+
+</thead>
+<tbody>
+<tr onmouseover="addChild()" onmouseout="remChild(event)" ng-repeat="project in projects.projects | filter:search:strict | orderBy:field:reverse" style="cursor:move" id="{{project.$id}}" data-toggle="tooltip" title="Click to drag this Project into Cart"  draggable >
+<td data-toggle="tooltip" title="View Project"><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
+<td>{{project.description}}</td>
+<td>{{project.author}}</td>
+<td>{{project.filesize}}</td>
+<td>{{project.date}}</td>
+<td>
+<a href="#/edit/{{project.$id}}"  data-toggle="tooltip" title="Edit this project"><i class="icon-pencil"></i></a>
+</td>
+<td>
+<a href="#" ng-click="destroy(project.$id)"  data-toggle="tooltip" title="Delete this project from the list"><i class="icon-remove"></i></a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="cart-add" class="cart-parent">
+<h3>Your Cart</h3>
+<hr>
+
+<table width=100%>
+<tr><th><a href="#"  data-toggle="tooltip" title="Delete project from the Cart"><i class="icon-trash"></i></a></th><th>File</th><th>size (Kbs)</th></tr>
+<tr ng-repeat="cart in projects.CartProjects" >
+<td>
+
+<a href="#" ng-click="CartDestroy(cart.$id, cart.name , cart.description, cart.hlink , cart.author, cart.filesize, cart.date)" data-toggle="tooltip" title="Press button to delete project from the Cart"><i class="icon-remove"></i></a>
+</td>
+<td><a href="{{cart.hlink}}">{{cart.name}}</a></td>
+<td> {{cart.filesize}}</td>
+</tr>
+<br>
+</table>
+<div onmouseout="removeChild(event)" droppable on-load-callback="CartCreate(id,size,name)" style=" height:300px; width:100%; background-image : url(img/white.png); overflow: auto">
+
+</div>
+</div>
+<div onmouseover="addChild()" style="border: solid 1px black;width:25% ;float:right;height:50px">
+ <table width="100%">
+<tr> 
+  <th>Total Size : </th><th>Total Proj selected</th>
+</tr>
+<tr>
+  <td><font color="red"> {{size}} </font></td><td><font color="red">{{cartLength}}</font></td></tr> 
+
+</div>
+</div>
